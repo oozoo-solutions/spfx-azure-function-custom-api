@@ -23,7 +23,10 @@ namespace UserDetails
             //Current user claims
             foreach (Claim claim in ClaimsPrincipal.Current.Claims)
             {
-                result.Add(claim.Type, claim.Value);
+                if (!result.ContainsKey(claim.Type))
+                {
+                    result.Add(claim.Type, claim.Value);
+                }
             }
 
             return req.CreateResponse(HttpStatusCode.OK, result, JsonMediaTypeFormatter.DefaultMediaType);
