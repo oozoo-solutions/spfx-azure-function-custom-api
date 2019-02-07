@@ -35,10 +35,10 @@ export default class ExternalApiConsumerWebPart extends BaseClientSideWebPart<IE
       </div>`;
 
     this.context.aadHttpClientFactory
-      .getClient('https://<your-tenant>.onmicrosoft.com/6b347c27-f360-47ac-b4d4-af78d0da4223')
+      .getClient('https://<your-tenant>.onmicrosoft.com/6b347c27-f360-47ac-b4d4-af78d0da4223') // APP ID URI
       .then((client: AadHttpClient): void => {
         client
-          .get('https://<function-app-name>.azurewebsites.net/api/', AadHttpClient.configurations.v1)
+          .get('https://<azurefunction-app-name>.azurewebsites.net/api/CurrentUser', AadHttpClient.configurations.v1)
           //Use /api/CurrentInfoFromSharePoint to call back to SharePoint
           //Use /api/CurrentUserFromGraph to call the Mirosoft Graph
           .then((response: HttpClientResponse): Promise<JSON> => {
